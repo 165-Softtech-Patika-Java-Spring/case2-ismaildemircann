@@ -1,5 +1,6 @@
 package com.softtech.case2ismaildemircann.app.adr.entitiy;
 
+import com.softtech.case2ismaildemircann.app.gen.entity.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ADR_NEIGHBORHOOD")
 @Data
-public class AdrNeighborhood {
+public class AdrNeighborhood extends BaseEntity {
 
     @Id
     @SequenceGenerator(name = "AdrNeighborhood", sequenceName = "ADR_NEIGHBORHOOD_ID_SEQ")

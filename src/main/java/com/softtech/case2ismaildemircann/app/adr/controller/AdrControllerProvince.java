@@ -25,10 +25,10 @@ public class AdrControllerProvince {
         return new ResponseEntity(adrProvinceDtoList, HttpStatus.OK);
     }
 
-    @GetMapping("/{licensePlate}")
-    public ResponseEntity findByLicensePlate(@PathVariable String licensePlate) {
+    @GetMapping("/{countryId}/{licensePlate}")
+    public ResponseEntity findByLicensePlate(@PathVariable Long countryId, @PathVariable String licensePlate) {
 
-        AdrProvinceDto adrProvinceDto = adrProvinceService.findByLicensePlate(licensePlate);
+        AdrProvinceDto adrProvinceDto = adrProvinceService.findByLicensePlate(countryId,licensePlate);
         return new ResponseEntity(adrProvinceDto, HttpStatus.OK);
     }
 

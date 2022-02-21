@@ -26,10 +26,10 @@ public class AdrControllerStreet {
         return ResponseEntity.ok(adrStreetDtoList);
     }
 
-    @GetMapping("/{neighborhoodName}")
-    public ResponseEntity findAllStreetByNeighborhoodName(@PathVariable String neighborhoodName) {
+    @GetMapping("/{neighborhoodId}")
+    public ResponseEntity findAllStreetByNeighborhoodName(@PathVariable Long neighborhoodId) {
 
-        List<AdrStreetDto> adrStreetDtoList = adrStreetService.findAllByNeighborhoodName(neighborhoodName);
+        List<AdrStreetDto> adrStreetDtoList = adrStreetService.findAllByNeighborhoodName(neighborhoodId);
 
         return ResponseEntity.ok(adrStreetDtoList);
     }

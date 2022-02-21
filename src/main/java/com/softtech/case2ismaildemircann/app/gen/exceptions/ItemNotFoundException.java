@@ -1,2 +1,13 @@
-package com.softtech.case2ismaildemircann.app.gen.exceptions;public class ItemNotFoundException {
+package com.softtech.case2ismaildemircann.app.gen.exceptions;
+
+import com.softtech.case2ismaildemircann.app.gen.enums.BaseErrorMessage;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class ItemNotFoundException extends GenBusinessException{
+
+    public ItemNotFoundException(BaseErrorMessage message) {
+        super(message);
+    }
 }

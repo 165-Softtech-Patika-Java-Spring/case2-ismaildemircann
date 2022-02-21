@@ -7,7 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AdrProvinceDao extends JpaRepository<AdrProvince, Long> {
 
-    AdrProvince findByLicensePlate (String licensePlate);
-
-    AdrProvince findByName(String name);
+    AdrProvince findByCountryIdAndLicensePlate(Long countryId, String licensePlate);
 }

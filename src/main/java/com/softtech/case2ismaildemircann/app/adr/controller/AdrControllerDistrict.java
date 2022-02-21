@@ -25,10 +25,10 @@ public class AdrControllerDistrict {
         return new ResponseEntity(adrDistrictDtoList, HttpStatus.OK);
     }
 
-    @GetMapping("/{provinceName}")
-    public ResponseEntity findAllDistrictByProvinceName(@PathVariable String provinceName) {
+    @GetMapping("/{provinceId}")
+    public ResponseEntity findAllDistrictByProvinceName(@PathVariable Long provinceId) {
 
-        List<AdrDistrictDto> adrDistrictDtoList = adrDistrictService.findAllByProvinceName(provinceName);
+        List<AdrDistrictDto> adrDistrictDtoList = adrDistrictService.findAllByProvinceId(provinceId);
 
         return new ResponseEntity(adrDistrictDtoList, HttpStatus.OK);
     }

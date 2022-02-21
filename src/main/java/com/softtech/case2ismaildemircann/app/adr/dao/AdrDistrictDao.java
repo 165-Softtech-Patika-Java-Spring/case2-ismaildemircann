@@ -8,6 +8,4 @@ import java.util.List;
 public interface AdrDistrictDao extends JpaRepository<AdrDistrict, Long> {
 
     List<AdrDistrict> findAllByProvinceId(Long id);
-
-    AdrDistrict findByName(String name);
 }

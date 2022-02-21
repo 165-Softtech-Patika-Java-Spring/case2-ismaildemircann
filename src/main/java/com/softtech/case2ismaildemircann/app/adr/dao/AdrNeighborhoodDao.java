@@ -10,6 +10,4 @@ import java.util.List;
 public interface AdrNeighborhoodDao extends JpaRepository<AdrNeighborhood, Long> {
 
     List<AdrNeighborhood> findAllByDistrictId(Long id);
-
-    AdrNeighborhood findByName(String name);
 }

@@ -1,10 +1,10 @@
 package com.softtech.case2ismaildemircann.app.adr.service;
 
-import com.softtech.case2ismaildemircann.app.adr.dao.AdrCountryDao;
 import com.softtech.case2ismaildemircann.app.adr.dto.AdrCountryDto;
 import com.softtech.case2ismaildemircann.app.adr.dto.AdrCountrySaveRequestDto;
 import com.softtech.case2ismaildemircann.app.adr.entitiy.AdrCountry;
 import com.softtech.case2ismaildemircann.app.adr.mapper.AdrCountryMapper;
+import com.softtech.case2ismaildemircann.app.adr.service.entityservice.AdrCountryEntityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +14,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdrCountryService {
 
-    private final AdrCountryDao adrCountryDao;
+    private final AdrCountryEntityService adrCountryEntityService;
 
     public List<AdrCountryDto> findAll() {
 
-        List<AdrCountry> adrCountryList = adrCountryDao.findAll();
+        List<AdrCountry> adrCountryList = adrCountryEntityService.findAll();
 
         List<AdrCountryDto> adrCountryDtoList = AdrCountryMapper.INSTANCE.convertToAdrCountryDtoList(adrCountryList);
 
@@ -29,7 +29,7 @@ public class AdrCountryService {
 
         AdrCountry adrCountry = AdrCountryMapper.INSTANCE.convertToAdrCountry(adrCountrySaveRequestDto);
 
-        adrCountry = adrCountryDao.save(adrCountry);
+        adrCountry = adrCountryEntityService.save(adrCountry);
 
         AdrCountryDto adrCountryDto = AdrCountryMapper.INSTANCE.convertToAdrCountryDto(adrCountry);
 
@@ -38,7 +38,7 @@ public class AdrCountryService {
 
     public AdrCountryDto findByCountryCode(String countryCode) {
 
-        AdrCountry adrCountry = adrCountryDao.findByCountryCode(countryCode);
+        AdrCountry adrCountry = adrCountryEntityService.findByCountryCode(countryCode);
 
         AdrCountryDto adrCountryDto = AdrCountryMapper.INSTANCE.convertToAdrCountryDto(adrCountry);
 

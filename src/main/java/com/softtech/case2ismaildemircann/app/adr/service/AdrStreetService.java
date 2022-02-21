@@ -1,36 +1,35 @@
 package com.softtech.case2ismaildemircann.app.adr.service;
 
-import com.softtech.case2ismaildemircann.app.adr.dao.AdrStreetDao;
 import com.softtech.case2ismaildemircann.app.adr.dto.*;
 import com.softtech.case2ismaildemircann.app.adr.entitiy.AdrStreet;
 import com.softtech.case2ismaildemircann.app.adr.mapper.AdrStreetMapper;
+import com.softtech.case2ismaildemircann.app.adr.service.entityservice.AdrStreetEntityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class AdrStreetService {
 
-    private final AdrStreetDao adrStreetDao;
+    private final AdrStreetEntityService adrStreetEntityService;
     private final AdrNeighborhoodService adrNeighborhoodService;
 
     public List<AdrStreetDto> findAll() {
 
-        List<AdrStreet> adrStreetList = adrStreetDao.findAll();
+        List<AdrStreet> adrStreetList = adrStreetEntityService.findAll();
 
         List<AdrStreetDto> adrStreetDtoList = AdrStreetMapper.INSTANCE.convertToAdrStreetDtoList(adrStreetList);
 
         return adrStreetDtoList;
     }
 
-    public List<AdrStreetDto> findAllByNeighborhoodName(String neighborhoodName) {
+    public List<AdrStreetDto> findAllByNeighborhoodName(Long neighborhoodId) {
 
-        AdrNeighborhoodDto adrNeighborhoodDto = adrNeighborhoodService.findByName(neighborhoodName);
+        AdrNeighborhoodDto adrNeighborhoodDto = adrNeighborhoodService.findById(neighborhoodId);
 
-        List<AdrStreet> adrStreetList = adrStreetDao.findAllByNeighborhoodId(adrNeighborhoodDto.getId());
+        List<AdrStreet> adrStreetList = adrStreetEntityService.findAllByNeighborhoodId(adrNeighborhoodDto.getId());
 
         List<AdrStreetDto> adrStreetDtoList = AdrStreetMapper.INSTANCE.convertToAdrStreetDtoList(adrStreetList);
 
@@ -39,10 +38,10 @@ public class AdrStreetService {
 
     public AdrStreetDto updateStreetName(AdrStreetUpdateRequestDto adrStreetUpdateRequestDto) {
 
-        AdrStreet adrStreet = getByIdWithControl(adrStreetUpdateRequestDto.getId());
+        AdrStreet adrStreet = adrStreetEntityService.getByIdWithControl(adrStreetUpdateRequestDto.getId());
         adrStreet.setName(adrStreetUpdateRequestDto.getNewName());
 
-        adrStreet = adrStreetDao.save(adrStreet);
+        adrStreet = adrStreetEntityService.save(adrStreet);
 
         AdrStreetDto adrStreetDto = AdrStreetMapper.INSTANCE.convertToAdrStreetDto(adrStreet);
 
@@ -58,24 +57,10 @@ public class AdrStreetService {
 
         AdrStreet adrStreet = AdrStreetMapper.INSTANCE.convertToAdrStreet(adrStreetSaveRequestDto);
         adrStreet.setNeighborhoodId(adrStreetSaveRequestDto.getNeighborhoodId());
-        adrStreet = adrStreetDao.save(adrStreet);
+        adrStreet = adrStreetEntityService.save(adrStreet);
 
         AdrStreetDto adrStreetDto = AdrStreetMapper.INSTANCE.convertToAdrStreetDto(adrStreet);
 
         return adrStreetDto;
-    }
-
-    public AdrStreet getByIdWithControl(Long id) {
-
-        Optional<AdrStreet> adrStreetOptional = adrStreetDao.findById(id);
-
-        AdrStreet adrStreet;
-        if (adrStreetOptional.isPresent()){
-            adrStreet = adrStreetOptional.get();
-        } else {
-            throw new RuntimeException("Item not found!");
-        }
-
-        return adrStreet;
     }
 }
