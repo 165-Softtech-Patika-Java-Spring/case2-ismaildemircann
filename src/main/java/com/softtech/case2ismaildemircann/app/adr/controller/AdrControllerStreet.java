@@ -29,7 +29,7 @@ public class AdrControllerStreet {
     @GetMapping("/{neighborhoodId}")
     public ResponseEntity findAllStreetByNeighborhoodName(@PathVariable Long neighborhoodId) {
 
-        List<AdrStreetDto> adrStreetDtoList = adrStreetService.findAllByNeighborhoodName(neighborhoodId);
+        List<AdrStreetDto> adrStreetDtoList = adrStreetService.findAllByNeighborhoodId(neighborhoodId);
 
         return ResponseEntity.ok(adrStreetDtoList);
     }

@@ -33,7 +33,7 @@ public class AdrControllerProvince {
     }
 
     @PostMapping()
-    public ResponseEntity saveProvince(@RequestBody AdrProvinceSaveRequestDto adrProvinceSaveRequestDto) throws Exception {
+    public ResponseEntity saveProvince(@RequestBody AdrProvinceSaveRequestDto adrProvinceSaveRequestDto) {
 
         AdrProvinceDto adrProvinceDto = adrProvinceService.save(adrProvinceSaveRequestDto);
         return new ResponseEntity(adrProvinceDto, HttpStatus.OK);

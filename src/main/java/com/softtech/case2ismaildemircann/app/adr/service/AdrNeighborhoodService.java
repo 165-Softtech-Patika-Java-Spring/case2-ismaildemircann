@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -51,6 +50,9 @@ public class AdrNeighborhoodService {
         return adrNeighborhoodDto;
     }
 
+    /**
+     * @return This method returns the neighborhood of the relevant district.
+     */
     public List<AdrNeighborhoodDto> findAllByDistrictId(Long districtId) {
 
         AdrDistrictDto adrDistrictDto = adrDistrictService.findById(districtId);

@@ -25,7 +25,10 @@ public class AdrStreetService {
         return adrStreetDtoList;
     }
 
-    public List<AdrStreetDto> findAllByNeighborhoodName(Long neighborhoodId) {
+    /**
+     * @return This method returns the street of the relevant neighborhood.
+     */
+    public List<AdrStreetDto> findAllByNeighborhoodId(Long neighborhoodId) {
 
         AdrNeighborhoodDto adrNeighborhoodDto = adrNeighborhoodService.findById(neighborhoodId);
 
